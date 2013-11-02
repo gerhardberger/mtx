@@ -47,7 +47,7 @@ And you can read this matrix with the `read` function:
 Matrix a = read("./a.mtx");
 ```
 
-## Write
+### Write
 You can write matrices to files in the same fashion just as easily.
 ``` c
 write(A, "./a.mtx");
