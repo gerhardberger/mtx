@@ -1,6 +1,21 @@
-# CMatrix
+# mtx.c
 
-## Types
+``` c
+Matrix A = read('./a.mtx');
+Matrix B = read('./b.mtx');
+
+printf("Determinant of A: %.3f", det(A));
+
+Matrix mult = multiply(A, B);
+write(mult, './mult.mtx');
+```
+
+__Mtx__ is a library in C that makes it easy to read, write, create matrices and do basic and not so basic operations on them. It tries to follow the convenctions used in [MATLAB](http://www.mathworks.com/products/matlab/examples.html?file=/products/demos/shipping/matlab/intro.html) for dealing with matrices.
+
+### Types
+
+#### Values
+A dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types).
 
 #### Matrix
 This type is the main one used in most functions when dealing with matrices.
@@ -8,7 +23,7 @@ This type is the main one used in most functions when dealing with matrices.
 struct Matrix {
   int n;       // Number of rows in the matrix
   int m;       // Number of columns in the matrix
-  Values vals; // A 2-dimensional array with the values of the matrix 
+  Values vals; // The values of the matrix 
 }
 ```
 
@@ -19,62 +34,128 @@ struct Row {
   int n;       // The size of the row
   Values vals; // The values in the row
 }
+```
 
+### Read
+You can read matrices from files, but one file can only contain one matrix.
+For example a 3 by 3 matrix in the file `a.mtx` (the .mtx is not required. just makes thing more clear) looks like this:
+```
+[2 3 4; 2 1 0; 0 0 1]
+```
+And you can read this matrix with the `read` function:
+``` c
+Matrix a = read('./a.mtx');
+```
 
-- Column
-{
-  n, data
-}
+### Write
+You can write matrices to files in the same fashion just as easily.
+``` c
+write(A, './a.mtx');
+```
 
+### Functions
 
-## Functions
-
-#### Matrix create(int n, int m)
+#### Create
 Returns an _n_ by _m_ matrix initialized with __0__s. The data is dynamically allocated in the heap.
+``` c
+Matrix create(int n, int m);
+```
 
-#### Matrix identity(int n, int m)
+#### Identity
 Returns an _n_ by _m_ __identity__ matrix.
+``` c
+Matrix identity(int n, int m);
+```
 
-#### Matrix add(Matrix A, Matrix B)
+#### Add
 Adds matrix B to A if possible and returns the added matrix. If addition is not possible, __error__ is thrown (or nothing happens).
+``` c
+Matrix add(Matrix A, Matrix B);
+```
 
-#### void scale(Matrix *A, double lambda)
+#### Scale
 Scales matrix __A__ by _lamba_. The calculation is done on the passed in matrix.
+``` c
+void scale(Matrix A, double lambda);
+```
 
-#### Matrix multiply(Matrix A, Matrix B)
+#### Multiply
 Multiplies matrix __A__ by matrix __B__ and returns the result. If multiplication is not possible, __error__ is thrown.
+``` c
+Matrix multiply(Matrix A, Matrix B);
+```
 
-#### void exchange(Matrix *A, int i, int j)
+#### Exchange
 Exchanges rows __i__ and __j__ in matrix __A__.
+``` c
+void exchange(Matrix *A, int i, int j);
+```
 
-#### Row row(Matrix A, int i)
+#### row
 Returns the __ith__ row of matrix __A__.
+``` c
+Row row(Matrix A, int i);
+```
 
-#### void scale_row(Row *r, double lambda)
+#### scale_row
 Scales row __r__ by __lambda__.
+``` c
+void scale_row(Row *r, double lambda);
+```
 
-#### void add_row(Row r, int i, Matrix *A)
+#### add_row
 Adds row __r__ to the __ith__ row of matrix __A__.
+``` c
+void add_row(Row r, int i, Matrix A);
+```
 
-#### void rref(Matrix *A)
+#### rref
 Makes matrix __A__ into _reduced row echelon form_.
+``` c
+void rref(Matrix A);
+```
 
-#### int rank(Matrix A)
+#### rank
 Returns the rank of matrix __A__.
+``` c
+int rank(Matrix A);
+```
 
-#### dim(A)
+#### dim
 Returns the dimension of matrix __A__.
+``` c
+int dim(Matrix A);
+```
 
-#### void transpose(Matrix *A)
+#### transpose
 Transposes matrix __A__.
+``` c
+void transpose(Matrix A);
+```
 
-#### double det(Matrix A)
+#### det
 Calculates the determinant of matrix __A__.
+``` c
+void transpose(Matrix A);
+```
 
-#### Matrix dup(Matrix A)
+#### dup
 Duplicates matrix __A__.
+``` c
+Matrix dup(Matrix A);
+```
 
+### Roadmap
+These are other important functions that could be done later.
 
+#### inv
+Calculates the inverse of matrix __A__.
+``` c
+Matrix inv(Matrix A);
+```
 
-- inv(A)
-- eig(A)
+#### eig
+Calculates the eigenvalues of matrix __A__.
+``` c
+double[] eig(Matrix A);
+```
