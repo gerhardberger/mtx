@@ -44,13 +44,13 @@ For example a 3 by 3 matrix in the file `a.mtx` (the .mtx is not required. just 
 ```
 And you can read this matrix with the `read` function:
 ``` c
-Matrix a = read('./a.mtx');
+Matrix a = read("./a.mtx");
 ```
 
 ## Write
 You can write matrices to files in the same fashion just as easily.
 ``` c
-write(A, './a.mtx');
+write(A, "./a.mtx");
 ```
 
 ## Functions
