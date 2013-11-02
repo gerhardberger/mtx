@@ -1,13 +1,13 @@
 # mtx.c
 
 ``` c
-Matrix A = read('./a.mtx');
-Matrix B = read('./b.mtx');
+Matrix A = read("./a.mtx");
+Matrix B = read("./b.mtx");
 
 printf("Determinant of A: %.3f", det(A));
 
 Matrix mult = multiply(A, B);
-write(mult, './mult.mtx');
+write(mult, "./mult.mtx");
 ```
 
 __Mtx__ is a library in C that makes it easy to read, write, create matrices and do basic and not so basic operations on them. It tries to follow the convenctions used in [MATLAB](http://www.mathworks.com/products/matlab/examples.html?file=/products/demos/shipping/matlab/intro.html) for dealing with matrices.
@@ -15,7 +15,7 @@ __Mtx__ is a library in C that makes it easy to read, write, create matrices and
 ### Types
 
 #### Values
-A dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types).
+The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
 
 #### Matrix
 This type is the main one used in most functions when dealing with matrices.
@@ -56,91 +56,91 @@ write(A, './a.mtx');
 ### Functions
 
 #### Create
-Returns an _n_ by _m_ matrix initialized with __0__s. The data is dynamically allocated in the heap.
+Returns an _n_ by _m_ matrix initialized with `0`s. The data is dynamically allocated in the heap.
 ``` c
 Matrix create(int n, int m);
 ```
 
 #### Identity
-Returns an _n_ by _m_ __identity__ matrix.
+Returns an _n_ by _m_ `identity` matrix.
 ``` c
 Matrix identity(int n, int m);
 ```
 
 #### Add
-Adds matrix B to A if possible and returns the added matrix. If addition is not possible, __error__ is thrown (or nothing happens).
+Adds matrix B to A if possible and returns the added matrix. If addition is not possible, `error` is thrown (or nothing happens).
 ``` c
 Matrix add(Matrix A, Matrix B);
 ```
 
 #### Scale
-Scales matrix __A__ by _lamba_. The calculation is done on the passed in matrix.
+Scales matrix `A` by _lamba_. The calculation is done on the passed in matrix.
 ``` c
 void scale(Matrix A, double lambda);
 ```
 
 #### Multiply
-Multiplies matrix __A__ by matrix __B__ and returns the result. If multiplication is not possible, __error__ is thrown.
+Multiplies matrix `A` by matrix `B` and returns the result. If multiplication is not possible, `error` is thrown.
 ``` c
 Matrix multiply(Matrix A, Matrix B);
 ```
 
 #### Exchange
-Exchanges rows __i__ and __j__ in matrix __A__.
+Exchanges rows `i` and `j` in matrix `A`.
 ``` c
 void exchange(Matrix *A, int i, int j);
 ```
 
 #### row
-Returns the __ith__ row of matrix __A__.
+Returns the `ith` row of matrix `A`.
 ``` c
 Row row(Matrix A, int i);
 ```
 
 #### scale_row
-Scales row __r__ by __lambda__.
+Scales row `r` by `lambda`.
 ``` c
 void scale_row(Row *r, double lambda);
 ```
 
 #### add_row
-Adds row __r__ to the __ith__ row of matrix __A__.
+Adds row `r` to the `ith` row of matrix `A`.
 ``` c
 void add_row(Row r, int i, Matrix A);
 ```
 
 #### rref
-Makes matrix __A__ into _reduced row echelon form_.
+Makes matrix `A` into _reduced row echelon form_.
 ``` c
 void rref(Matrix A);
 ```
 
 #### rank
-Returns the rank of matrix __A__.
+Returns the rank of matrix `A`.
 ``` c
 int rank(Matrix A);
 ```
 
 #### dim
-Returns the dimension of matrix __A__.
+Returns the dimension of matrix `A`.
 ``` c
 int dim(Matrix A);
 ```
 
 #### transpose
-Transposes matrix __A__.
+Transposes matrix `A`.
 ``` c
 void transpose(Matrix A);
 ```
 
 #### det
-Calculates the determinant of matrix __A__.
+Calculates the determinant of matrix `A`.
 ``` c
 void transpose(Matrix A);
 ```
 
 #### dup
-Duplicates matrix __A__.
+Duplicates matrix `A`.
 ``` c
 Matrix dup(Matrix A);
 ```
@@ -149,13 +149,13 @@ Matrix dup(Matrix A);
 These are other important functions that could be done later.
 
 #### inv
-Calculates the inverse of matrix __A__.
+Calculates the inverse of matrix `A`.
 ``` c
 Matrix inv(Matrix A);
 ```
 
 #### eig
-Calculates the eigenvalues of matrix __A__.
+Calculates the eigenvalues of matrix `A`.
 ``` c
 double[] eig(Matrix A);
 ```
