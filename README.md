@@ -74,7 +74,7 @@ Matrix add(Matrix A, Matrix B);
 ```
 
 #### Scale
-Scales matrix `A` by _lamba_. The calculation is done on the passed in matrix.
+Scales matrix `A` by `lamba`. The calculation is done on the passed in matrix.
 ``` c
 void scale(Matrix A, double lambda);
 ```
@@ -100,7 +100,7 @@ Row row(Matrix A, int i);
 #### scale_row
 Scales row `r` by `lambda`.
 ``` c
-void scale_row(Row *r, double lambda);
+void scale_row(Row r, double lambda);
 ```
 
 #### add_row
@@ -110,7 +110,7 @@ void add_row(Row r, int i, Matrix A);
 ```
 
 #### rref
-Makes matrix `A` into _reduced row echelon form_.
+Makes matrix `A` into __reduced row echelon form__.
 ``` c
 void rref(Matrix A);
 ```
