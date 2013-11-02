@@ -12,7 +12,7 @@ write(mult, "./mult.mtx");
 
 __Mtx__ is a library in C that makes it easy to read, write, create matrices and do basic and not so basic operations on them. It tries to follow the convenctions used in [MATLAB](http://www.mathworks.com/products/matlab/examples.html?file=/products/demos/shipping/matlab/intro.html) for dealing with matrices.
 
-## Types
+### Types
 
 #### Values
 The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
@@ -36,7 +36,7 @@ struct Row {
 }
 ```
 
-## Read
+### Read
 You can read matrices from files, but one file can only contain one matrix.
 For example a 3 by 3 matrix in the file `a.mtx` (the .mtx is not required. just makes thing more clear) looks like this:
 ```
@@ -53,9 +53,9 @@ You can write matrices to files in the same fashion just as easily.
 write(A, "./a.mtx");
 ```
 
-## Functions
+### Functions
 
-##### Create
+#### Create
 Returns an _n_ by _m_ matrix initialized with `0`s. The data is dynamically allocated in the heap.
 ``` c
 Matrix create(int n, int m);
@@ -145,7 +145,7 @@ Duplicates matrix `A`.
 Matrix dup(Matrix A);
 ```
 
-## Roadmap
+### Roadmap
 These are other important functions that could be done later.
 
 #### inv
