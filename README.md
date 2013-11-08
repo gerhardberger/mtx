@@ -14,6 +14,9 @@ __Mtx__ is a library in C that makes it easy to read, write, create matrices and
 
 ### Types
 
+#### Index
+The index of the Matrix of Row. It is typedefed to `unsigned int`.
+
 #### Values
 The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
 
@@ -21,8 +24,8 @@ The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ 
 This type is the main one used in most functions when dealing with matrices.
 ``` c
 struct Matrix {
-  int n;       // Number of rows in the matrix
-  int m;       // Number of columns in the matrix
+  Index n;       // Number of rows in the matrix
+  Index m;       // Number of columns in the matrix
   Values vals; // The values of the matrix 
 }
 ```
@@ -31,7 +34,7 @@ struct Matrix {
 This type is used when we get or operate on a single row.
 ``` c
 struct Row {
-  int n;       // The size of the row
+  Index n;       // The size of the row
   Values vals; // The values in the row
 }
 ```
@@ -58,13 +61,13 @@ write(A, "./a.mtx");
 #### Create
 Returns an _n_ by _m_ matrix initialized with `0`s. The data is dynamically allocated in the heap.
 ``` c
-Matrix create(int n, int m);
+Matrix create(Index n, Index m);
 ```
 
 #### Identity
 Returns an _n_ by _m_ `identity` matrix.
 ``` c
-Matrix identity(int n, int m);
+Matrix identity(Index n, Index m);
 ```
 
 #### Add
@@ -88,13 +91,13 @@ Matrix multiply(Matrix A, Matrix B);
 #### Exchange
 Exchanges rows `i` and `j` in matrix `A`.
 ``` c
-void exchange(Matrix *A, int i, int j);
+void exchange(Matrix *A, Index i, Index j);
 ```
 
 #### row
 Returns the `ith` row of matrix `A`.
 ``` c
-Row row(Matrix A, int i);
+Row row(Matrix A, Index i);
 ```
 
 #### scale_row
@@ -106,7 +109,7 @@ void scale_row(Row r, double lambda);
 #### add_row
 Adds row `r` to the `ith` row of matrix `A`.
 ``` c
-void add_row(Row r, int i, Matrix A);
+void add_row(Row r, Index i, Matrix A);
 ```
 
 #### rref
