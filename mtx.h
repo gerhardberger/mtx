@@ -5,6 +5,9 @@
   Copyright (c) 2013 Hegyi Gellért. All rights reserved.
 
 */
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 
 
 /*

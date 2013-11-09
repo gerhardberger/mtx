@@ -74,7 +74,7 @@ Matrix create(Index n, Index m);
 ```
 
 #### Identity
-Returns an _n_ by _m_ `identity` matrix.
+Returns an _n_ by _n_ `identity` matrix.
 ``` c
 Matrix identity(Index n);
 ```

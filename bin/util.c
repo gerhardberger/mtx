@@ -5,8 +5,6 @@
   Copyright (c) 2013 Hegyi Gellért. All rights reserved.
 
 */
-#include <stdlib.h>
-#include <assert.h>
 
 
 /*
@@ -26,4 +24,21 @@ Matrix create (Index row_size, Index col_size) {
   }
 
   return m;
+}
+
+
+/*
+  Identity
+*/
+Matrix identity (Index n) {
+  Matrix id = create(n, n);
+
+  Index i, j;
+  for (i = 0; i < id.n; ++i) {
+    for (j = 0; j < id.n; ++j) {
+      id.vals[i][j] = i == j;
+    }
+  }
+
+  return id;
 }

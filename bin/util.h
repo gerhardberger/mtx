@@ -15,3 +15,11 @@
   in the heap.
 */
 Matrix create (Index row_size, Index col_size);
+
+
+/*
+  Identity
+
+  Returns an n by n identity Matrix.
+*/
+Matrix identity (Index n);
