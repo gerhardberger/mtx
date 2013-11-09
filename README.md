@@ -68,7 +68,7 @@ write(A, "./a.mtx");
 ### Functions
 
 #### Create
-Returns an _n_ by _m_ matrix initialized with `0`s. The data is dynamically allocated in the heap.
+Returns an _n_ by _m_ matrix. The data is dynamically allocated in the _heap_.
 ``` c
 Matrix create(Index n, Index m);
 ```
