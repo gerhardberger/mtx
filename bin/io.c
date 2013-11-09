@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+//#include "util.h"
 
 /*
   Read
@@ -19,36 +20,24 @@ Matrix read (char *filename) {
   // If cannot open file
   assert(fp != NULL);
 
-  Matrix m;
   char c;
   Value n;
   Index row_size = 1, col_size = 1, col_size_ = 0;
   while (fscanf(fp, "%c%lf", &c, &n) != EOF) {
     if (c == ';') {
-      // Assert row size is equal to the last one
-      //if (col_size_ > 0) assert(col_size_ == col_size);
       col_size_ = col_size;
       col_size = 1;
       row_size++;
     }
     if (c == ' ') col_size++;
   }
-  // Assert last row size is equal to the others
-  //assert(col_size_ == col_size);
 
+  fclose(fp);
 
   // Reading the file again to get the values
-  m.n = row_size;
-  m.m = col_size;
-  m.vals = malloc(m.n * sizeof(Value *));
-  assert(m.vals != NULL);
-  Index i;
-  for (i = 0; i < m.n; ++i) {
-    m.vals[i] = malloc(m.m * sizeof(Value));
-    assert(m.vals[i] != NULL);
-  }
+  Matrix m = create(row_size, col_size);
 
-  i = 0;
+  Index i = 0;
   Index j = 0;
   fp = fopen(filename, "r");
   while (fscanf(fp, "%c%lf", &c, &n) != EOF) {
@@ -56,5 +45,31 @@ Matrix read (char *filename) {
     if (c == ' ' || c == '[') m.vals[i][j++] = n;
   }
 
+  fclose(fp);
+
   return m;
+}
+
+
+/*
+  Write
+*/
+int write (Matrix A, char *filename) {
+  // Open file for writing
+  FILE *fp = fopen(filename, "w");
+
+  if (fp == NULL) return 0;
+
+  fprintf(fp, "[");
+  Index i, j;
+  for (i = 0; i < A.n; ++i) {
+    for (j = 0; j < A.m; ++j)
+      if (j < A.n - 1) fprintf(fp, "%f ", A.vals[i][j]);
+      else fprintf(fp, "%f", A.vals[i][j]);
+    if (i < A.n - 1) fprintf(fp, "; ");
+  }
+  fprintf(fp, "]");
+
+  fclose(fp);
+  return 1;
 }

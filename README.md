@@ -60,7 +60,7 @@ Matrix a = read("./a.mtx");
 ```
 
 ### Write
-You can write matrices to files in the same fashion just as easily.
+You can write matrices to files in the same fashion just as easily. Returns `true` if writing to file succeeded, `false` if not.
 ``` c
 write(A, "./a.mtx");
 ```

@@ -21,4 +21,4 @@ Matrix read (char *filename);
 
   Writing matrices to files.
 */
-void write (Matrix A, char *filename);
+int write (Matrix A, char *filename);

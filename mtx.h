@@ -14,6 +14,12 @@
 
 
 /*
+  Utilitiy functions
+*/
+#include "bin/util.h"
+
+
+/*
   IO - Read, write
 */
 #include "bin/io.h"
