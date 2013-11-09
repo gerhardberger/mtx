@@ -15,7 +15,16 @@ __Mtx__ is a library in C that makes it easy to read, write, create matrices and
 ### Types
 
 #### Index
-The index of the Matrix of Row. It is typedefed to `unsigned int`.
+The index of the `Matrix` of `Row`.
+``` c
+typedef unsigned int Index;
+```
+
+#### Value
+The type of the values of the `Matrix` or `Row`.
+``` c
+typedef double Value;
+```
 
 #### Values
 The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
@@ -67,7 +76,7 @@ Matrix create(Index n, Index m);
 #### Identity
 Returns an _n_ by _m_ `identity` matrix.
 ``` c
-Matrix identity(Index n, Index m);
+Matrix identity(Index n);
 ```
 
 #### Add
