@@ -2,7 +2,9 @@
 #include "../mtx.h"
 
 int main () {
-  mtx_print(add(read("./a.mtx"), read("./b.mtx")));
+  Matrix a = add(read("./a.mtx"), read("./b.mtx"));
+
+  mtx_print(a);
   
   return 0;
 }
