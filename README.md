@@ -67,37 +67,43 @@ write(A, "./a.mtx");
 
 ### Functions
 
-#### Create
+#### create
 Returns an _n_ by _m_ matrix. The data is dynamically allocated in the _heap_.
 ``` c
 Matrix create(Index n, Index m);
 ```
 
-#### Identity
+#### destroy
+Destroys a Matrix, donates the Values back to the heap.
+``` c
+Matrix destroy(Matrix A);
+```
+
+#### identity
 Returns an _n_ by _n_ `identity` matrix.
 ``` c
 Matrix identity(Index n);
 ```
 
-#### Add
+#### add
 Adds matrix B to A if possible and returns the added matrix. If addition is not possible, `error` is thrown (or nothing happens).
 ``` c
 Matrix add(Matrix A, Matrix B);
 ```
 
-#### Scale
-Scales matrix `A` by `lamba`. The calculation is done on the passed in matrix.
+#### scale
+Scales matrix `A` by `lambda`. The calculation is done on the passed in matrix.
 ``` c
 void scale(Matrix A, double lambda);
 ```
 
-#### Multiply
+#### multiply
 Multiplies matrix `A` by matrix `B` and returns the result. If multiplication is not possible, `error` is thrown.
 ``` c
 Matrix multiply(Matrix A, Matrix B);
 ```
 
-#### Exchange
+#### exchange
 Exchanges rows `i` and `j` in matrix `A`.
 ``` c
 void exchange(Matrix *A, Index i, Index j);

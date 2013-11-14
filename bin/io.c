@@ -1,7 +1,7 @@
 /*
 
   io.c
-  Created by Hegyi Gellért on 10/08/13.
+  Created by Hegyi Gellért on 11/08/13.
   Copyright (c) 2013 Hegyi Gellért. All rights reserved.
 
 */
@@ -37,9 +37,11 @@ Matrix read (char *filename) {
   Index i = 0;
   Index j = 0;
   fp = fopen(filename, "r");
+  fscanf(fp, "%c%lf", &c, &n);
+  m.vals[i][j] = n;
   while (fscanf(fp, "%c%lf", &c, &n) != EOF) {
     if (c == ';') m.vals[++i][j = 0] = n;
-    if (c == ' ' || c == '[') m.vals[i][j++] = n;
+    if (c == ' ') m.vals[i][++j] = n;
   }
 
   fclose(fp);

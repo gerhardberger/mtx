@@ -1,7 +1,7 @@
 /*
 
   util.h
-  Created by Hegyi Gellért on 10/08/13.
+  Created by Hegyi Gellért on 11/08/13.
   Copyright (c) 2013 Hegyi Gellért. All rights reserved.
 
 */
@@ -15,6 +15,15 @@
   in the heap.
 */
 Matrix create (Index row_size, Index col_size);
+
+
+/*
+  Destroy
+
+  Destroys a Matrix (donates the Values back to the heap).
+*/
+void destroy (Matrix A);
+
 
 
 /*
