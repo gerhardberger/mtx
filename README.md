@@ -76,7 +76,7 @@ Matrix create(Index n, Index m);
 #### destroy
 Destroys a Matrix, donates the Values back to the heap.
 ``` c
-Matrix destroy(Matrix A);
+void destroy(Matrix *A);
 ```
 
 #### identity
