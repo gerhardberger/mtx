@@ -22,5 +22,6 @@ int main () {
   Matrix mult = multiply(&c, &d);
   mtx_print(&mult);
 
+
   return 0;
 }

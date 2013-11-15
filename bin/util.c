@@ -29,15 +29,15 @@ Matrix create (Index row_size, Index col_size) {
 /*
   Destroy
 */
-void destroy (Matrix m) {
+void destroy (Matrix *m) {
   Index i;
-  for (i = 0; i < m.n; ++i)
-    free(m.vals[i]);
-  free(m.vals);
+  for (i = 0; i < m->n; ++i)
+    free(m->vals[i]);
+  free(m->vals);
 
-  m.n = 0;
-  m.m = 0;
-  m.vals = NULL;
+  m->n = 0;
+  m->m = 0;
+  m->vals = NULL;
 }
 
 

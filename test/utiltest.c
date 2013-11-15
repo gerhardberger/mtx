@@ -4,7 +4,7 @@
 int main () {
   Matrix m = create(100, 32);
 
-  destroy(m);
+  destroy(&m);
 
   printf("\nIdentity\n");
   Matrix A = identity(5);

@@ -22,7 +22,7 @@ Matrix create (Index row_size, Index col_size);
 
   Destroys a Matrix (donates the Values back to the heap).
 */
-void destroy (Matrix A);
+void destroy (Matrix *A);
 
 
 
