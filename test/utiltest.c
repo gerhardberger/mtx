@@ -6,9 +6,13 @@ int main () {
 
   destroy(m);
 
+  printf("\nIdentity\n");
   Matrix A = identity(5);
+  mtx_print(&A);
 
-  mtx_print(A);
+  printf("\nDuplicate\n");
+  Matrix dupd = dup(&A);
+  mtx_print(&dupd);
 
   return 0;
 }

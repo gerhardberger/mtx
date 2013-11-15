@@ -32,3 +32,11 @@ void destroy (Matrix A);
   Returns an n by n identity Matrix.
 */
 Matrix identity (Index n);
+
+
+/*
+  Duplicate
+  
+  Duplicates matrix A.
+*/
+Matrix dup(Matrix *A);

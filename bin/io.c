@@ -53,7 +53,7 @@ Matrix read (char *filename) {
 /*
   Write
 */
-int write (Matrix A, char *filename) {
+int write (Matrix *A, char *filename) {
   // Open file for writing
   FILE *fp = fopen(filename, "w");
 
@@ -61,11 +61,11 @@ int write (Matrix A, char *filename) {
 
   fprintf(fp, "[");
   Index i, j;
-  for (i = 0; i < A.n; ++i) {
-    for (j = 0; j < A.m; ++j)
-      if (j < A.n - 1) fprintf(fp, "%f ", A.vals[i][j]);
-      else fprintf(fp, "%f", A.vals[i][j]);
-    if (i < A.n - 1) fprintf(fp, "; ");
+  for (i = 0; i < A->n; ++i) {
+    for (j = 0; j < A->m; ++j)
+      if (j < A->n - 1) fprintf(fp, "%f ", A->vals[i][j]);
+      else fprintf(fp, "%f", A->vals[i][j]);
+    if (i < A->n - 1) fprintf(fp, "; ");
   }
   fprintf(fp, "]");
 

@@ -4,9 +4,9 @@
 Matrix A = read("./a.mtx");
 Matrix B = read("./b.mtx");
 
-printf("Determinant of A: %.3f", det(A));
+printf("Determinant of A: %.3f", det(&A));
 
-Matrix mult = multiply(A, B);
+Matrix mult = multiply(&A, &B);
 write(mult, "./mult.mtx");
 ```
 
@@ -56,13 +56,13 @@ For example a 3 by 3 matrix in the file `a.mtx` (the .mtx is not required. just 
 ```
 And you can read this matrix with the `read` function:
 ``` c
-Matrix a = read("./a.mtx");
+Matrix read(char *filename);
 ```
 
 ### Write
 You can write matrices to files in the same fashion just as easily. Returns `true` if writing to file succeeded, `false` if not.
 ``` c
-write(A, "./a.mtx");
+int write(Matrix *A, char *filename);
 ```
 
 ### Functions
@@ -88,19 +88,19 @@ Matrix identity(Index n);
 #### add
 Adds matrix B to A if possible and returns the added matrix. If addition is not possible, `error` is thrown (or nothing happens).
 ``` c
-Matrix add(Matrix A, Matrix B);
+Matrix add(Matrix *A, Matrix *B);
 ```
 
 #### scale
 Scales matrix `A` by `lambda`. The calculation is done on the passed in matrix.
 ``` c
-void scale(Matrix A, double lambda);
+void scale(Matrix *A, Value lambda);
 ```
 
 #### multiply
 Multiplies matrix `A` by matrix `B` and returns the result. If multiplication is not possible, `error` is thrown.
 ``` c
-Matrix multiply(Matrix A, Matrix B);
+Matrix multiply(Matrix *A, Matrix *B);
 ```
 
 #### exchange
@@ -154,13 +154,13 @@ void transpose(Matrix A);
 #### det
 Calculates the determinant of matrix `A`.
 ``` c
-double det(Matrix A);
+double det(Matrix *A);
 ```
 
 #### dup
 Duplicates matrix `A`.
 ``` c
-Matrix dup(Matrix A);
+Matrix dup(Matrix *A);
 ```
 
 ### Roadmap

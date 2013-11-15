@@ -15,4 +15,22 @@
   If addition is not possible, `error` is thrown (or nothing
   happens).
 */
-Matrix add(Matrix A, Matrix B);
+Matrix add(Matrix *A, Matrix *B);
+
+
+/*
+  Scale
+
+  Scales matrix A by lambda. The calculation is done on the
+  passed in matrix.
+*/
+void scale(Matrix *A, double lambda);
+
+
+/*
+  Multiply
+
+  Multiplies matrix `A` by matrix `B` and returns the result.
+  If multiplication is not possible, `error` is thrown.
+*/
+Matrix multiply(Matrix *A, Matrix *B);

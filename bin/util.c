@@ -57,14 +57,28 @@ Matrix identity (Index n) {
 
 
 /*
+  Duplicate
+*/
+Matrix dup(Matrix *a) {
+  Matrix b = create(a->n, a->m);
+  Index i, j;
+  for (i = 0; i < a->n; ++i)
+    for (j = 0; j < a->m; ++j)
+      b.vals[i][j] = a->vals[i][j];
+
+  return b;
+}
+
+
+/*
   Print
 */
-void mtx_print (Matrix m) {
-  printf("Rows: %d\nCols: %d\n", m.n, m.m);
+void mtx_print (Matrix *m) {
+  printf("Rows: %d\nCols: %d\n", m->n, m->m);
   Index i;
-  for (i = 0; i < m.n; ++i) {
+  for (i = 0; i < m->n; ++i) {
     Index j;
-    for (j = 0; j < m.m; ++j) printf("%.f ", m.vals[i][j]);
+    for (j = 0; j < m->m; ++j) printf("%.f ", m->vals[i][j]);
     printf("\n");
   }
 }
