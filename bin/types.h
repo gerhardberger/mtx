@@ -32,7 +32,7 @@ typedef double Value;
   the future could be possible to use different types), that is used
   to store the values of matrices and vectors.
 */
-typedef double **Values;
+typedef Value **Values;
 
 
 /*
