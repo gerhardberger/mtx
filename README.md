@@ -15,7 +15,7 @@ __Mtx__ is a library in C that makes it easy to read, write, create matrices and
 ### Types
 
 #### Index
-The index of the `Matrix` of `Row`.
+The index of the `Matrix` or `Row`.
 ``` c
 typedef unsigned int Index;
 ```
