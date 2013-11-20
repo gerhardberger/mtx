@@ -29,14 +29,13 @@ Matrix read (char *filename) {
     if (c == ' ') col_size++;
   }
 
-  fclose(fp);
-
   // Reading the file again to get the values
   Matrix m = create(row_size, col_size);
-
   Index i = 0;
   Index j = 0;
-  fp = fopen(filename, "r");
+
+  // Going back to the beginning of the file
+  fseek(fp, 0, SEEK_SET);
   fscanf(fp, "%c%lf", &c, &n);
   m.vals[i][j] = n;
   while (fscanf(fp, "%c%lf", &c, &n) != EOF) {
