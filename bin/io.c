@@ -12,7 +12,7 @@
 */
 Matrix read (char *filename) {
   // Open file for counting rows and columns
-  FILE *fp = fopen(filename, "r");
+  FILE *fp = fopen(filename, "rt");
   
   // If cannot open file
   assert(fp != NULL);
@@ -54,7 +54,7 @@ Matrix read (char *filename) {
 */
 int write (Matrix *A, char *filename) {
   // Open file for writing
-  FILE *fp = fopen(filename, "w");
+  FILE *fp = fopen(filename, "wt");
 
   if (fp == NULL) return 0;
 
