@@ -9,6 +9,8 @@ int main () {
   Matrix e = read("./e.mtx");
   Matrix f = read("./f.mtx");
   Matrix g = read("./g.mtx");
+  Matrix h = read("./e.mtx");
+  Matrix i = read("./i.mtx");
 
   printf("\nAdd\n");
   Matrix sum = add(&a, &b);
@@ -65,6 +67,16 @@ int main () {
   printf("rank of e: %d\n", rank(&e));
   printf("rank of f: %d\n", rank(&f));
   printf("rank of g: %d\n", rank(&g));
+
+
+  printf("\ntranspose\n");
+  Matrix tr = transpose(&mult);
+  mtx_print(&tr);
+
+
+  printf("\ndet\n");
+  printf("Determinant of h: %.2f\n", det(&h));
+  printf("Determinant of i: %.2f\n", det(&i));
 
   return 0;
 }

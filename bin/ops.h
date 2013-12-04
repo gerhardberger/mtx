@@ -90,3 +90,19 @@ Index rank(Matrix *A);
   Returns the dimension of matrix A.
 */
 Index dim(Matrix *A);
+
+
+/*
+  Transpose
+
+  Transposes matrix A.
+*/
+Matrix transpose(Matrix *A);
+
+
+/*
+  Determinant
+
+  Calculates the determinant of matrix A.
+*/
+Value det(Matrix *A);

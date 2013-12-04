@@ -6,6 +6,7 @@
 
 */
 #include <string.h>
+#include <math.h>
 
 
 Value _multipliedValue (Index i, Index j, Matrix *a, Matrix *b) {
@@ -131,18 +132,21 @@ void add_row (Row *r, Index i, Matrix *m) {
 }
 
 
-void _fixPivot (Matrix *m, Index ith, Index *col) {
-  if (ith == m->n - 1 || m->vals[ith][*col] != 0) return;
-  Index i, ith_ = ith;
+Index _fixPivot (Matrix *m, Index ith, Index *col) {
+  if (ith == m->n - 1 || m->vals[ith][*col] != 0) return 0;
+  Index i, ith_ = ith, exs = 0;
   for (i = ith_ + 1; i < m->n; ++i) {
     if (m->vals[i][*col] != 0) {
       exchange(m, i, ith_);
+      exs++;
       ith_++;
       if (m->vals[ith_][*col] != 0) break;
     }
   }
   for (i = *col; i < m->m && _eqZero(m->vals[ith][i]); ++i) ;
   *col = i;
+
+  return exs;
 }
 
 void _cleanDown (Matrix *m, Index ith, Index jth) {
@@ -163,27 +167,37 @@ void _cleanUpZeros (Matrix *m) {
       if (_eqZero(m->vals[i][j])) m->vals[i][j] = 0;
 }
 
-/*
-  rref
-*/
-void rref (Matrix *m) {
+void _gausselim (Matrix *m, Value *coeffs, Index *exs) {
   Index i;
   Values v = m->vals;
-
+  *coeffs = 1;
+  *exs = 0;
   for (i = 0; i < m->n; ++i) {
     Index col = i;
 
-    _fixPivot(m, i, &col);
-    if (col == m->m || _eqZero(v[i][col])) break;
+    *exs += _fixPivot(m, i, &col);
+    if (col == m->m || _eqZero(v[i][col])) {
+      *coeffs = 0;
+      break;
+    }
 
+    *coeffs *= v[i][col];
     scale_mtx_row(m, i, 1 / v[i][col]);
 
     _cleanDown(m, i, col);
   }
 
   _cleanUpZeros(m);
-
+  
   m->inrref = 1;
+}
+
+/*
+  rref
+*/
+void rref (Matrix *m) {
+  Index a; Value b;
+  _gausselim(m, &b, &a);
 }
 
 
@@ -212,4 +226,35 @@ Index rank (Matrix *m) {
 */
 Index dim (Matrix *m) {
   return rank(m);
+}
+
+
+/*
+  transpose
+*/
+Matrix transpose(Matrix *m) {
+  Matrix a = create(m->m, m->n);
+  Index i, j;
+
+  for (i = 0; i < m->n; ++i)
+    for (j = 0; j < m->m; ++j)
+      a.vals[j][i] = m->vals[i][j];
+
+  return a;
+}
+
+
+/*
+  det
+*/
+Value det(Matrix *m) {
+  assert(m->n == m->m);
+
+  Index exs;
+  Value coeffs;
+  Matrix dp = dup(m);
+  _gausselim(&dp, &coeffs, &exs);
+
+  Value det_ = pow(-1, exs) * coeffs;
+  return _eqZero(det_) ? 0.0 : det_;
 }
