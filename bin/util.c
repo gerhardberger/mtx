@@ -5,6 +5,25 @@
   Copyright (c) 2013 Hegyi Gellért. All rights reserved.
 
 */
+#include <math.h>
+
+
+/*
+  Handling Alloc Error
+*/
+void handleAllocError(void *ptr) {
+  if (ptr != NULL) return;
+  fprintf(stderr, "Some allocation failed!\n");
+  assert(0);
+}
+
+
+/*
+  Value equals 0
+*/
+int _eqZero (Value v) {
+  return fabs(v) < 10e-8;
+}
 
 
 /*
@@ -15,12 +34,13 @@ Matrix create (Index row_size, Index col_size) {
 
   m.n = row_size;
   m.m = col_size;
+  m.inrref = 0;
   m.vals = malloc(m.n * sizeof(Value *));
-  assert(m.vals != NULL);
+  handleAllocError(m.vals);
   Index i;
   for (i = 0; i < m.n; ++i) {
     m.vals[i] = malloc(m.m * sizeof(Value));
-    assert(m.vals[i] != NULL);
+    handleAllocError(m.vals[i]);
   }
 
   return m;
@@ -71,14 +91,27 @@ Matrix dup(Matrix *a) {
 
 
 /*
-  Print
+  Matrix print
 */
 void mtx_print (Matrix *m) {
   printf("Rows: %d\nCols: %d\n", m->n, m->m);
   Index i;
   for (i = 0; i < m->n; ++i) {
     Index j;
-    for (j = 0; j < m->m; ++j) printf("%.f ", m->vals[i][j]);
+    for (j = 0; j < m->m; ++j) printf("%.2f ", m->vals[i][j]);
     printf("\n");
   }
+}
+
+
+/*
+  Row print
+*/
+void row_print (Row *r) {
+  printf("Elems: %d\n", r->n);
+  Index i;
+  for (i = 0; i < r->n; ++i) {
+    printf("%.f ", r->vals[i]);
+  }
+  printf("\n");
 }

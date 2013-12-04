@@ -36,6 +36,11 @@ typedef Value **Values;
 
 
 /*
+
+*/
+typedef Value *RowValues;
+
+/*
   Matrix
 
   This type is the main one used in most functions when dealing with
@@ -45,6 +50,7 @@ typedef struct {
   Index n;           // Number of rows in the matrix
   Index m;           // Number of columns in the matrix
   Values vals;       // The values of the matrix 
+  int inrref;        // True if the matrix is in rrref form else false
 } Matrix;
 
 
@@ -55,5 +61,5 @@ typedef struct {
 */
 typedef struct {
   Index n;           // The size of the row
-  Values vals;       // The values in the row
+  RowValues vals;       // The values in the row
 } Row;

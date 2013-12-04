@@ -34,3 +34,59 @@ void scale(Matrix *A, double lambda);
   If multiplication is not possible, `error` is thrown.
 */
 Matrix multiply(Matrix *A, Matrix *B);
+
+
+/*
+  Exchange
+
+  Exchanges rows i and j in matrix A.
+*/
+void exchange(Matrix *A, Index i, Index j);
+
+
+/*
+  Row
+
+  Returns the ith row of matrix A.
+*/
+Row row(Matrix *A, Index i);
+
+
+/*
+  Scale row
+
+  Scales row r by lambda.
+*/
+void scale_row(Row *r, double lambda);
+
+
+/*
+  Add row
+  
+  Adds row r to the ith row of matrix A.
+*/
+void add_row(Row *r, Index i, Matrix *A);
+
+
+/*
+  rref
+
+  Makes matrix A into Reduced Row Echelon Form.
+*/
+void rref(Matrix *A);
+
+
+/*
+  Rank
+  
+  Returns the rank of matrix A.
+*/
+Index rank(Matrix *A);
+
+
+/*
+  Dim
+
+  Returns the dimension of matrix A.
+*/
+Index dim(Matrix *A);

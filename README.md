@@ -27,7 +27,10 @@ typedef double Value;
 ```
 
 #### Values
-The `Values` type is a dynamically allocated 2-dimensional array of __doubles__ (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
+The `Values` type is a dynamically allocated 2-dimensional array of `Value`s (for now, in the future could be possible to use different types), that is used to store the values of matrices and vectors.
+
+#### RowValues
+A one-dimensional array of `Value`s, for the values of the row.
 
 #### Matrix
 This type is the main one used in most functions when dealing with matrices.
@@ -35,7 +38,8 @@ This type is the main one used in most functions when dealing with matrices.
 struct Matrix {
   Index n;       // Number of rows in the matrix
   Index m;       // Number of columns in the matrix
-  Values vals; // The values of the matrix 
+  Values vals;   // The values of the matrix
+  int inrref;    // True if the matrix is in rrref form else false
 }
 ```
 
@@ -43,8 +47,8 @@ struct Matrix {
 This type is used when we get or operate on a single row.
 ``` c
 struct Row {
-  Index n;       // The size of the row
-  Values vals; // The values in the row
+  Index n;         // The size of the row
+  RowValues vals;  // The values in the row
 }
 ```
 
@@ -112,49 +116,49 @@ void exchange(Matrix *A, Index i, Index j);
 #### row
 Returns the `ith` row of matrix `A`.
 ``` c
-Row row(Matrix A, Index i);
+Row row(Matrix *A, Index i);
 ```
 
 #### scale_row
 Scales row `r` by `lambda`.
 ``` c
-void scale_row(Row r, double lambda);
+void scale_row(Row *r, double lambda);
 ```
 
 #### add_row
 Adds row `r` to the `ith` row of matrix `A`.
 ``` c
-void add_row(Row r, Index i, Matrix A);
+void add_row(Row *r, Index i, Matrix *A);
 ```
 
 #### rref
 Makes matrix `A` into __reduced row echelon form__.
 ``` c
-void rref(Matrix A);
+void rref(Matrix *A);
 ```
 
 #### rank
 Returns the rank of matrix `A`.
 ``` c
-int rank(Matrix A);
+Index rank(Matrix *A);
 ```
 
 #### dim
 Returns the dimension of matrix `A`.
 ``` c
-int dim(Matrix A);
+Index dim(Matrix *A);
 ```
 
 #### transpose
 Transposes matrix `A`.
 ``` c
-void transpose(Matrix A);
+void transpose(Matrix *A);
 ```
 
 #### det
 Calculates the determinant of matrix `A`.
 ``` c
-double det(Matrix *A);
+Value det(Matrix *A);
 ```
 
 #### dup

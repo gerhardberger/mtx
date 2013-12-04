@@ -6,6 +6,9 @@ int main () {
   Matrix b = read("./b.mtx");
   Matrix c = read("./c.mtx");
   Matrix d = read("./d.mtx");
+  Matrix e = read("./e.mtx");
+  Matrix f = read("./f.mtx");
+  Matrix g = read("./g.mtx");
 
   printf("\nAdd\n");
   Matrix sum = add(&a, &b);
@@ -22,6 +25,46 @@ int main () {
   Matrix mult = multiply(&c, &d);
   mtx_print(&mult);
 
+
+  printf("\nExchange\n");
+  exchange(&mult, 0, 1);
+  mtx_print(&mult);
+
+
+  printf("\nRow\n");
+  Row r = row(&mult, 1);
+  row_print(&r);
+
+
+  printf("\nRow scale\n");
+  scale_row(&r, -5);
+  row_print(&r);
+
+
+  printf("\nAdd row\n");
+  add_row(&r, 0, &mult);
+  mtx_print(&mult);
+
+
+  printf("\nrref\n");
+  rref(&e);
+  mtx_print(&e);
+
+  //printf("\n");
+
+  //rref(&f);
+  //mtx_print(&f);
+
+  printf("\n");
+
+  rref(&g);
+  mtx_print(&g);
+
+
+  printf("\nrank\n");
+  printf("rank of e: %d\n", rank(&e));
+  printf("rank of f: %d\n", rank(&f));
+  printf("rank of g: %d\n", rank(&g));
 
   return 0;
 }

@@ -40,3 +40,11 @@ Matrix identity (Index n);
   Duplicates matrix A.
 */
 Matrix dup(Matrix *A);
+
+
+/*
+  Handling allocation error
+
+  If some allocation fails, the following code will execute.
+*/
+void handleAllocError(void *ptr);
